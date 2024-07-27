@@ -5,18 +5,19 @@ export interface IUSerProps {
   emailAddress: string;
   gender: string;
   sleepTimeDuration: string;
-  createdAt?: Date;
+  date: string;
 }
 
-const getUsers = () => {
+const getUser = (email?: string) => {
   return axios
-    .get("users")
+    .get(`users/?emailAddress=${email}`)
     .then((res) => res.data.data)
     .catch((e) => console.log(e));
 };
-const getUserByEmail = (email: string) => {
+
+const getUsers = () => {
   return axios
-    .get(`users?emailAddress=${email}`)
+    .get(`users/`)
     .then((res) => res.data.data)
     .catch((e) => console.log(e));
 };
@@ -28,9 +29,10 @@ const createUser = (data: IUSerProps) => {
       emailAddress: data.emailAddress,
       gender: data.gender,
       sleepTimeDuration: Number(data.sleepTimeDuration),
+      date: data.date,
     })
     .then((res) => res.data)
     .catch((e) => console.log(e));
 };
 
-export { getUsers, createUser, getUserByEmail };
+export { getUser, getUsers, createUser };

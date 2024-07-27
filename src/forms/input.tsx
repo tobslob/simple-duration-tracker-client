@@ -9,7 +9,7 @@ import {
   FormMessage,
   FormDescription,
 } from "../components/ui/form";
-import { Control, FieldValues, useFormContext } from "react-hook-form";
+import { FieldValues, useFormContext } from "react-hook-form";
 import { cn } from "../lib/utils";
 import * as React from "react";
 
@@ -23,6 +23,7 @@ interface ComponentProps<T extends FieldValues> {
   format?: (val: any) => any;
   readOnly?: boolean;
   disabled?: boolean;
+  pattern?: string;
 }
 
 const InputField = ({
@@ -33,6 +34,7 @@ const InputField = ({
   placeholder,
   description,
   className,
+  pattern,
   readOnly = undefined,
   disabled = undefined,
 }: ComponentProps<FieldValues>) => {
@@ -60,6 +62,7 @@ const InputField = ({
                 type={type}
                 readOnly={readOnly}
                 disabled={disabled}
+                pattern={pattern}
               />
             </FormControl>
             <FormMessage />

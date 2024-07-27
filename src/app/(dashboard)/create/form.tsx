@@ -20,6 +20,7 @@ const formSchema = z.object({
   sleepTimeDuration: z.string({
     required_error: "Please provide the sleep time duration",
   }),
+  date: z.string({ required_error: "Please provide the date" }),
 });
 
 type ValuesType = z.infer<typeof formSchema>;
@@ -60,6 +61,7 @@ function Component(): React.ReactElement {
       gender: "",
       emailAddress: "",
       sleepTimeDuration: "",
+      date: "",
     },
   });
 
@@ -77,16 +79,16 @@ function Component(): React.ReactElement {
           <div className="space-y-1 pb-8">
             <p className="text-2xl sm:text-3xl font-bold">Add User</p>
           </div>
-          <InputField name="name" placeholder="Required" label="Name" />
+          <InputField name="name" placeholder="Enter your name" label="Name" />
           <InputField
             name="emailAddress"
-            placeholder="Required"
+            placeholder="Enter your email"
             label="Email"
             type="text"
           />
           <ComboSelectField
             name="gender"
-            placeholder="Required"
+            placeholder="Choose your gender"
             label="Gender"
             labelProp="name"
             valueProp="id"
@@ -94,9 +96,16 @@ function Component(): React.ReactElement {
           />
           <InputField
             name="sleepTimeDuration"
-            placeholder="Required"
+            placeholder="Enter sleep duration"
             label="Sleep Time Duration"
             type="number"
+          />
+          <InputField
+            name="date"
+            placeholder="Enter a date (YYYY-MM-DD)"
+            label="Date"
+            type="text"
+            pattern="\d{4}-\d{2}-\d{2}"
           />
           <div className="pt-8">
             <Button

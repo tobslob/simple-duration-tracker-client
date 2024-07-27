@@ -2,7 +2,7 @@
 
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { useQuery } from "@tanstack/react-query";
-import { getUserByEmail } from "@/services/users";
+import { getUser } from "@/services/users";
 import { Loader } from "@/components";
 import { IUSerProps } from "../../../../services/users/index";
 import moment from "moment";
@@ -10,9 +10,13 @@ import moment from "moment";
 function userData(data: IUSerProps[]) {
   let result: { day: string; sleepTime: string }[] = [];
 
+  if (!data) {
+    return undefined;
+  }
+
   data.map((x: IUSerProps) => {
     result.push({
-      day: moment(x.createdAt).format("dddd"),
+      day: moment(x.date).format("dddd"),
       sleepTime: x.sleepTimeDuration,
     });
   });
@@ -21,13 +25,12 @@ function userData(data: IUSerProps[]) {
 }
 
 function Component({ params }: { params: { emailAddress: string } }) {
-  const email = params.emailAddress;
+  const emailAddress = params.emailAddress;
   const { data, isLoading, error } = useQuery({
-    queryKey: ["chart", email],
-    queryFn: () => getUserByEmail(email),
+    queryKey: ["chart", emailAddress],
+    queryFn: () => getUser(emailAddress),
   });
 
-  console.log("I AM DATA", data);
   if (isLoading) {
     return <Loader />;
   }
@@ -48,7 +51,6 @@ function Component({ params }: { params: { emailAddress: string } }) {
             tickLine={false}
             axisLine={false}
             tickFormatter={(value) => `${value} hr`}
-            
           />
           <Bar
             dataKey="sleepTime"
