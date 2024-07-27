@@ -14,6 +14,7 @@ export interface IUser {
   gender: string;
   count: number;
   date: string;
+  sleepTimeDuration: number;
 }
 
 export const columns: ColumnDef<IUser>[] = [
@@ -42,6 +43,13 @@ export const columns: ColumnDef<IUser>[] = [
       <DataTableColumnHeader column={column} title="Count" />
     ),
     cell: ({ row }) => <div>{row.original.count}</div>,
+  },
+  {
+    accessorKey: "sleepTimeDuration",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Sleep Time Duration" />
+    ),
+    cell: ({ row }) => <div>{row.original.sleepTimeDuration}</div>,
   },
   {
     accessorKey: "date",

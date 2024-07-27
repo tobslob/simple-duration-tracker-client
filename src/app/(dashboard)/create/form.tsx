@@ -67,6 +67,7 @@ function Component(): React.ReactElement {
 
   const onSubmit: SubmitHandler<ValuesType> = (values) => {
     mutate(values);
+    form.reset();
   };
 
   return (
@@ -98,7 +99,7 @@ function Component(): React.ReactElement {
             name="sleepTimeDuration"
             placeholder="Enter sleep duration"
             label="Sleep Time Duration"
-            type="number"
+            type="text"
           />
           <InputField
             name="date"
