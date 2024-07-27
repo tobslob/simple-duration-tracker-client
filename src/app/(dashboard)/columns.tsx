@@ -6,12 +6,14 @@ import {
   DataTableHeaderCheckbox,
   DataTableRowCheckbox,
 } from "@/components/ui/grid/elements";
+import moment from "moment";
 
 export interface IUser {
   id: number;
   name: string;
   gender: string;
   count: number;
+  date: string;
 }
 
 export const columns: ColumnDef<IUser>[] = [
@@ -35,10 +37,19 @@ export const columns: ColumnDef<IUser>[] = [
     ),
   },
   {
-    accessorKey: "_count",
+    accessorKey: "count",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Count" />
     ),
     cell: ({ row }) => <div>{row.original.count}</div>,
+  },
+  {
+    accessorKey: "date",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Date" />
+    ),
+    cell: ({ row }) => (
+      <div>{moment(row.original.date).format("YYYY-MM-DD")}</div>
+    ),
   },
 ];
