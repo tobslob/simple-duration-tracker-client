@@ -3,7 +3,7 @@
 import * as React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { ThemeProvider } from "@/components";
+import { ThemeProvider, Toaster } from "@/components";
 export default function Providers({ children }: { children: React.ReactNode }) {
   const client = new QueryClient({
     defaultOptions: {
@@ -23,6 +23,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       {/* <SessionProvider> */}
       <QueryClientProvider client={client}>
         <>{children}</>
+        <Toaster />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
       {/* </SessionProvider> */}

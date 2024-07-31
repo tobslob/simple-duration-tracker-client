@@ -73,13 +73,13 @@ function Component(): React.ReactElement {
   return (
     <Form {...form}>
       <form
-        className="w-full max-w-lg mx-auto py-8 lg:px-0 space-y-6"
+        className="w-full max-w-lg mx-auto py-8 lg:px-0"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <div>
-          <div className="space-y-1 pb-8">
-            <p className="text-2xl sm:text-3xl font-bold">Add User</p>
-          </div>
+        <div className="space-y-1 pb-8">
+          <p className="text-2xl sm:text-3xl font-bold">Add User</p>
+        </div>
+        <div className="space-y-3">
           <InputField name="name" placeholder="Enter your name" label="Name" />
           <InputField
             name="emailAddress"
